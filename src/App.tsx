@@ -12,6 +12,7 @@ import {
   deleteDoc,
   query,
   orderBy,
+  serverTimestamp,
 } from "./data/db";
 import ShoppingListEntry from "./models/ShoppingListEntry";
 import { registerRootComponent } from "expo";
@@ -63,7 +64,7 @@ export default function App() {
       await addDoc(collection(firestore, SHOPPING_LIST), {
         text: input,
         checked: false,
-        timestamp: Date.now(),
+        timestamp: serverTimestamp(),
       });
     } catch (error) {
       console.error("Error adding document: ", error);
